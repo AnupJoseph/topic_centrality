@@ -6,5 +6,5 @@ auth.set_access_token("ZrMYVz4BAb4YdafAIceEVF7iU", "Wxs0USX2wcqMd1cOorNLn58U4wS9
 try:
     api.verify_credentials()
     print("Authentication OK")
-except:
-    print("Error during authentication")
+except Error as E:
+    print(f"Error{E} during authentication")
