@@ -1,6 +1,6 @@
 import spacy
 from emoji import demojize
-nlp = spacy.load('en_core_web_lg')
+nlp = spacy.load('en')
 # stopwords = nlp.Defaults.stop_words
 # print(stopwords)
 def emoji_to_text(line):
