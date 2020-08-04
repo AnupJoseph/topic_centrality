@@ -38,7 +38,7 @@ def preprocess(sentence):
   sentence = emoji_to_text(sentence)
   sentence = nlp(sentence)
   # sentence = [remove_url(str(word.text)) for word in sentence]
-  sentence = [word for word in sentence if not word.is_punct or word == ""]
+  sentence = [word for word in sentence if not word.is_punct]
   sentence = [word for word in sentence if len(word)>3]
   sentence = [word for word in sentence if not word.is_stop]
   sentence = [word.lemma_ for word in sentence]
