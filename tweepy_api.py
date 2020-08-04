@@ -1,7 +1,7 @@
 import pandas as pd
 import tweepy
 from tweet_config import api,COLS
-from preprocess import preprocesss
+from preprocess import preprocess
 
 def get_tweets(screen_name):
 	"""Function to get tweets of a specific user
@@ -16,7 +16,7 @@ def get_tweets(screen_name):
 	for tweet in tweets.items():
 
 		tweet = tweet._json
-		raw_text = preprocesss(tweet['full_text'])
+		raw_text = preprocess(tweet['full_text'])
 		print(raw_text+'\n')
 		if i>5:
 			break
