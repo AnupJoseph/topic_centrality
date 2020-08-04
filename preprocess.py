@@ -15,5 +15,5 @@ def preprocess(sentence):
   sentence = [word.lemma_ for word in sentence]
   
   return sentence
-sent = preprocess("Wherever the maple leaf flies, it represents our ric'h history, our bright future, and the values that hold dear as Canadians.Happy flag day 🇨🇦")
-print(sent)
+# sent = preprocess("Wherever the maple leaf flies, it represents our ric'h history, our bright future, and the values that hold dear as Canadians.Happy flag day 🇨🇦")
+# print(sent)
