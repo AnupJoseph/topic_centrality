@@ -1,7 +1,7 @@
 import spacy
 import re
 from emoji import demojize
-nlp = spacy.load('en')
+nlp = spacy.load('en_core_web_sm')
 
 def emoji_to_text(line):
   """Translate emoji to words as emoji hold infomration in tittwe
@@ -15,25 +15,23 @@ def emoji_to_text(line):
   line = demojize(line)
   return line
 
-def remove_url(sentence):
-	"""Remove the token
-	
-	Args:
-	    sentence (TYPE): Description
-	
-	Returns:
-	    TYPE: Description
-	"""
-	return re.sub(r"http\S+", "", sentence)
 
 def preprocess(sentence):
-  """Preprocess framework
+  """Preprocess framework.Peforms the following operation\
+
+  * Convert emoji to root meaning
+  * Tokenization and creating a spacy doc
+  * Remove punctuation
+  * Removes words of less than 3 letters
+  * Removes Standard stop words (I'll add a custom set later)
+  * Removes urls
+  * Reduces each word to its root lemma 
   
   Args:
       sentence (String): Input String 
   
   Returns:
-      TYPE: Output string
+      TYPE: Output string after the above preprocessing 
   """
   sentence = emoji_to_text(sentence)
   sentence = nlp(sentence)
@@ -41,6 +39,6 @@ def preprocess(sentence):
   sentence = [word for word in sentence if not word.is_punct]
   sentence = [word for word in sentence if len(word)>3]
   sentence = [word for word in sentence if not word.is_stop]
+  sentence = [word for word in sentence if not word.like_url]
   sentence = [word.lemma_ for word in sentence]
-  # sentence = [remove_url(word) for word in sentence]
   return " ".join(sentence)
