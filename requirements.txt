@@ -12,6 +12,8 @@ cymem==2.0.3
 decorator==4.4.2
 defusedxml==0.6.0
 emoji==0.6.0
+en-core-web-lg @ https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-2.3.1/en_core_web_lg-2.3.1.tar.gz
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.3.1/en_core_web_sm-2.3.1.tar.gz
 entrypoints==0.3
 idna==2.10
 importlib-metadata==1.7.0
@@ -71,7 +73,7 @@ texttable==1.6.2
 thinc==7.4.1
 threadpoolctl==2.1.0
 tornado==6.0.4
-tqdm==4.48.2
+tqdm==4.48.0
 traitlets==4.3.3
 tweepy==3.9.0
 ujson==1.35
