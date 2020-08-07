@@ -34,7 +34,7 @@ def get_tweets(screen_name,latest_date_found=None,en_only=True):
 	return timeline_df
 
 def write_to_file(file_location,tweets_df):
-	with open(file_location,'w',encoding='utf-8') as target:
+	with open(file_location,'w+',encoding='utf-8') as target:
 		tweets_df.to_csv(target,index=False,encoding = 'utf-8')
 	return 
 
