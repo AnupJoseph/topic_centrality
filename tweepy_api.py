@@ -17,34 +17,34 @@ def get_tweets(screen_name,latest_date_found=None,en_only=True):
 
 	print(f"Cleaning Data")
 
-	pbar = tqdm.tqdm(iterable=tweets_df[:5])
+	pbar = tqdm.tqdm(iterable=timeline_df[:5])
 	for tweet in tweets.items():
-    	if ((en_only and tweet.lang == 'en') or not en_only) and (tweet.created_at<EndDate and tweet.created_at>EndDate):
-    		tweet_df = cleaner(tweet)
-			timeline_df = timeline_df.append(tweet_df,ignore_index = True)
-			pbar.update(1)
+			if ((en_only and tweet.lang == 'en') or not en_only) and (tweet.created_at<EndDate and tweet.created_at>EndDate):
+					tweet_df = cleaner(tweet)
+					timeline_df = timeline_df.append(tweet_df,ignore_index = True)
+					pbar.update(1)
 	pbar.close()
 
 	if latest_date_found:
-    	print("-- Removing dates before {} -- ".format(latest_date_found))
+		print("-- Removing dates before {} -- ".format(latest_date_found))
 		timeline_df['to_date'] = pd.to_datetime(timeline_df['created_at']).dt.tz_convert(None)
-		timeline_df = timeline_df[timeline_df['to_date'] > most_recent_date]
+		timeline_df = timeline_df[timeline_df['to_date'] > latest_date_found]
 		timeline_df.drop('to_date',axis=1)
 
 	return timeline_df
 
 def write_to_file(file_location,tweets_df):
-    with open(file_location,'w',encoding='utf-8') as target:
+	with open(file_location,'w',encoding='utf-8') as target:
 		tweets_df.to_csv(target,index=False,encoding = 'utf-8')
 	return 
 
 def combine_tweets(user_name,en_only=False):
-    file_location = "data/{}_data.csv".format(user_name)
+	file_location = "data/{}_data.csv".format(user_name)
 	latest_date_found = None
 	old_data = None
 
 	if os.path.exists(user_name):
-    	old_data = pd.read_csv(file_location)
+		old_data = pd.read_csv(file_location)
 		dates_series = pd.to_datetime(old_data['created_at']).dt.tz_convert(None)
 		latest_date_found = dates_series.max()
 		tweets_df = get_tweets(user_name,latest_date_found,en_only) 
@@ -53,7 +53,7 @@ def combine_tweets(user_name,en_only=False):
 		print("Total_tweets = {}; New tweets added for {} = {}".format(tweets_df.shape[0],user_name,new_tweets_count))
 		write_to_file(file_location,tweets_df)
 	else:
-    	tweets_df = get_tweets(user_name,latest_date_found,en_only)
+		tweets_df = get_tweets(user_name,latest_date_found,en_only)
 		write_to_file(file_location,tweets_df)
 
 

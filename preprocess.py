@@ -1,6 +1,8 @@
 import spacy
 import re
 from emoji import demojize
+from tweet_config import COLS
+import pandas as pd
 nlp = spacy.load('en_core_web_sm')
 
 def emoji_to_text(line):
