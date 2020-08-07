@@ -35,7 +35,7 @@ def get_tweets(screen_name,latest_date_found=None,en_only=True):
 
 def write_to_file(file_location,tweets_df):
 	csvFile = open(file_location, 'w+' ,encoding='utf-8')
-	data_frame.to_csv(csvFile, mode='w+', index=False, encoding="utf-8")
+	tweets_df.to_csv(csvFile, mode='w+', index=False, encoding="utf-8")
 
 def combine_tweets(user_name,en_only=False):
 	file_location = "data/{}_data.csv".format(user_name)
