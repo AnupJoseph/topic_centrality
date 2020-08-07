@@ -42,3 +42,23 @@ def preprocess(sentence):
   sentence = [word for word in sentence if not word.like_url]
   sentence = [word.lemma_ for word in sentence]
   return " ".join(sentence)
+
+
+def cleaner(tweet):
+    cleaned_tweet = []
+    tweet = tweet._json
+    cleaned_text = preprocess(tweet.full_text)
+
+    cleaned_tweet 	+= [tweet['id'],'tweet', tweet['created_at'],tweet['source'], tweet['full_text'],cleaned_text,tweet['favorite_count'], tweet['retweet_count']]
+
+    # Use hashtags
+    hashtags = ",".join([hashtag_item['text'] for hashtag_item in tweet['entities']['hashtags']])
+    cleaned_tweet.append(hashtags)
+
+    # Use mentions .Will be needed later
+    mentions = ",".join([mention['screen_name'] for mention in tweet['entities']['user_mentions']])
+    cleaned_tweet.append(mentions)
+
+    cleaned_tweet.append(tweet['user']['screen_name'])
+    single_tweet_df = pd.DataFrame([cleaned_tweet], columns=COLS)
+    return single_tweet_df
