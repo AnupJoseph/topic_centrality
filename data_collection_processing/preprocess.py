@@ -37,7 +37,7 @@ def process(sentence):
   """
   sentence = emoji_to_text(sentence)
   sentence = nlp(sentence)
-  # sentence = [remove_url(str(word.text)) for word in sentence]
+  
   sentence = [word for word in sentence if not word.is_punct]
   sentence = [word for word in sentence if len(word)>3]
   sentence = [word for word in sentence if not word.is_stop]
@@ -47,6 +47,16 @@ def process(sentence):
 
 
 def cleaner(tweet):
+    """
+    Utility Function to serialize the workflow for cleaning up a tweets
+    Args:
+        tweet (Tweet object): [A tweet object containing all the information realted to a tweet]
+
+    Returns:
+        [list]: [List holding a cleaned object information as 
+        'id', 'created_at', 'original_text','clean_text', 'retweet_count', 'hashtags','mentions', 'original_author']
+    """
+
     cleaned_tweet = []
     cleaned_text = process(tweet.text)
 
