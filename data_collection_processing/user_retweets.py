@@ -73,7 +73,7 @@ class Retweet_Grabber(object):
 		return single_tweet_df
 
 if __name__ == '__main__':
-	usernames = ['MittRomney']
+	usernames = ['andrewcuomo']
 	for username in usernames:
 		print("--- starting data collection for {}".format(username))
 		user = Retweet_Grabber(username)
