@@ -7,16 +7,21 @@ from datetime import datetime, date
 from tweepy_config import * 
 from write_to_file import write_to_file
 
+
+
 class Retweet_Grabber(object):
-	def __init__(self, screen_name, *args, **kwargs):
+	def __init__(self, screen_name,input_file, *args, **kwargs):
 		self.__START_DATE = date(2018, 10, 21)
 		self.__END_DATE =   date(2020, 1, 1)
 		self.screen_name = screen_name	
-		self.file_path =  "../data/{}_retweets.csv".format(screen_name)
+		self.input_file = input_file
+		self.file_path =  "../data/{}/{}_retweets.csv".format(screen_name,input_file)
 		self.tweet_ids, self.retweet_df, self.num_tweets = self.get_old_retweets()	
 
 	def get_old_retweets(self):
-		tweet_file_path		= "../data/{}_data.csv".format(self.screen_name)
+		# tweet_file_path		= "../data/{}_data.csv".format(self.screen_name)
+		tweet_file_path = f"../data/{self.screen_name}/{self.input_file}"
+		print(tweet_file_path)
 		assert os.path.exists(tweet_file_path), "Tweets must be collected and placed in /data folder before retweets can be collected."
 		tweet_df = pd.read_csv(tweet_file_path)
 		exists = os.path.exists(self.file_path)
@@ -37,7 +42,7 @@ class Retweet_Grabber(object):
 		self.retweet_df["date"] = pd.to_datetime(self.retweet_df['created_at']).dt.date
 		self.retweet_df = self.retweet_df[self.retweet_df["date"] >= self.__START_DATE]
 		self.retweet_df = self.retweet_df.drop("date",axis=1)
-		write_to_file(self.file_path,self.retweet_df)
+		write_to_file(self.file_path,self.retweet_df,self.screen_name)
 		print("--- done for {} ---".format(screen_name))
 
 	def get_user_retweets(self):
@@ -50,7 +55,7 @@ class Retweet_Grabber(object):
 			self.retweet_df = self.retweet_df.append(retweets)
 			if index % 74 == 0:
 				print("\t> writing tweets")
-				write_to_file(self.file_path,self.retweet_df)
+				write_to_file(self.file_path,self.retweet_df,self.screen_name)
 			index += 1
 			pbar.update(1)
 		pbar.close()
@@ -73,8 +78,10 @@ class Retweet_Grabber(object):
 		return single_tweet_df
 
 if __name__ == '__main__':
-	usernames = ['andrewcuomo']
+	usernames = ['SenSanders']
+	i = 0
+	input_file = f'{usernames[0]}'+f'_data_{i}.csv'
 	for username in usernames:
 		print("--- starting data collection for {}".format(username))
-		user = Retweet_Grabber(username)
+		user = Retweet_Grabber(username,input_file)
 		user.put_tweets()
