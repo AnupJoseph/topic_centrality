@@ -1,26 +1,28 @@
-# External module Imports
-import GetOldTweets3 as got 
+# External Imports
 import pandas as pd
+import GetOldTweets3 as got
 
-# Internal Module Imports
-from preprocess import cleaner
+# Internal imports
 from tweepy_config import COLS,politicians
+from preprocess import cleaner
 
 def get_tweets(screen_name,start_date,end_date):
-    """
-    If you read this Samuel and its not working for mare than some time then set up a rolling loop 
-    which will run through a certain interval of time for a user.And then append it to the existing tweets.
-    A month seems to be working at the time of writing. 
-    
+    """Function to collect all the tweets of a politician and perform the preprocessing pipeline on the tweets
+
     Args:
-        screen_name (TYPE): Description
-        start_date (TYPE): Description
-        end_date (TYPE): Description
+        screen_name ([string]): User name of the politician
+        start_date ([string]): starting date from which the tweets are to be collected
+        end_date ([string]): Ending date upto which the tweets are to be collected
     """
+
     print(f"Getting tweets of {screen_name}")
+
+    # Set the criteria for tweets are gather them
     tweet_criteria = got.manager.TweetCriteria().setUsername(screen_name).setSince(start_date)\
     .setUntil(end_date).setEmoji('unicode')
     tweets = got.manager.TweetManager.getTweets(tweet_criteria)
+
+    # Dump the tweets into a dataframe and send the dataframe for preprocessing
     tweets_df = pd.DataFrame(columns = COLS)
     print(f"Preprocessing tweets of {screen_name}")
     for tweet in tweets:
