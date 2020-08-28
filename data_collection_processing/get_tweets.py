@@ -1,5 +1,8 @@
+# External module Imports
 import GetOldTweets3 as got 
 import pandas as pd
+
+# Internal Module Imports
 from preprocess import cleaner
 from tweepy_config import COLS,politicians
 
