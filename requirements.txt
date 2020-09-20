@@ -72,7 +72,6 @@ PySocks==1.7.1
 python-dateutil==2.8.1
 python-igraph==0.8.2
 python-jsonrpc-server==0.3.4
-python-language-server===deepnote-0.02
 pytz==2020.1
 PyYAML==5.3.1
 pyzmq==19.0.1
