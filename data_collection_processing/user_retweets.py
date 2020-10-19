@@ -107,8 +107,8 @@ class Retweet_Grabber(object):
 		return single_tweet_df
 
 if __name__ == '__main__':
-	usernames = ['JoeBiden']
-	i = 12
+	usernames = ['realDonaldTrump']
+	i = 19
 	input_file = f'{usernames[0]}'+f'_data_{i}.csv'
 	for username in usernames:
 		print("--- starting data collection for {}".format(username))
