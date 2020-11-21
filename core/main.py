@@ -37,6 +37,8 @@ class Controller(object):
         dataframe = lda_maker(sc)
         print(dataframe.show())
 
+if __name__ == "__main__":
+    Controller(fire.fire)
 
 
 
