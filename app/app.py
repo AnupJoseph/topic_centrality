@@ -3,15 +3,23 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 
+import chart_studio.plotly as py
+from plotly.offline import iplot
+import plotly.graph_objs as go
+
+import igraph as ig
+
 from sample_graph_maker import make_graph_parts
 
 
-def make_graph(nodes, edges,):
+def make_graph(nodes, edges):
     G = ig.Graph()
+    # print(edges)
+    # print(nodes)
     for node in nodes:
         G.add_vertex(node[0], type=node[1], color=node[2])
-        layout = G.layout('spring', dim=3)
-        G.add_edges(edges)
+    layout = G.layout('grid_3d', dim=3)
+    G.add_edges(edges)
     return G, layout
 
 
