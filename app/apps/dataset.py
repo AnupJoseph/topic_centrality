@@ -3,6 +3,7 @@ import dash_table
 import pandas as pd
 
 df = pd.read_csv('https://raw.githubusercontent.com/AnupJoseph/topic_centrality/master/data/sparkling_clean_data.csv')
+df = df.resample(200)
 layout = dash_table.DataTable(
     style_cell={
         'overflow': 'hidden',
