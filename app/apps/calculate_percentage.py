@@ -12,7 +12,7 @@ def calculate_percentage():
 
     data = pd.DataFrame(columns=COLS)
     for politician in politicians:
-        df = pd.read_csv(f"../../data/{politician}/{politician}_data_temp.csv")
+        df = pd.read_csv(f"../data/{politician}/{politician}_data_temp.csv")
         df.drop(labels=['Unnamed: 0','Unnamed: 0.1'],inplace=True)
         data = pd.concat([data,df])
     
