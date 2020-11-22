@@ -7,6 +7,10 @@ import chart_studio.plotly as py
 from plotly.offline import iplot
 import plotly.graph_objs as go
 
+from flask import Flask
+import flask
+import os
+
 import igraph as ig
 
 from sample_graph_maker import make_graph_parts
@@ -17,7 +21,7 @@ def make_graph(nodes, edges):
     for node in nodes:
         G.add_vertex(node[0], type=node[1], color=node[2])
 
-    layout = G.layout('grid_3d', dim=3)
+    layout = G.layout('kk', dim=3)
     G.add_edges(edges)
     return G, layout
 
@@ -34,8 +38,8 @@ for node in nodes:
         labels.append('<br>'.join(str(i) for i in node[1]))
     else:
         labels.append(node[1])
-        types.append(node[2])
-        group.append(node[3])
+    types.append(node[2])
+    group.append(node[3])
 
 Xn = []
 Yn = []
@@ -88,8 +92,18 @@ fig = go.Figure(data=data, layout=layout)
 # iplot(fig, filename='Netwrok grapg')
 
 
+STATIC_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+
+server = Flask(__name__)
+
 # Create the app
-app = dash.Dash()
+app = dash.Dash(name=__name__,server=server)
+
+@app.server.route('/static/<resource>')
+def serve_static(resource):
+    return flask.send_from_directory(STATIC_PATH, resource)
+
+
 app.layout = html.Div([
     dcc.Graph(figure=fig)
 ])
