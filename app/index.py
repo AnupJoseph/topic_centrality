@@ -13,7 +13,7 @@ dropdown = dbc.DropdownMenu(
     children=[
         dbc.DropdownMenuItem("Home", href="/"),
         dbc.DropdownMenuItem("Graph", href="/graph"),
-        dbc.DropdownMenuItem("dataset", href="/dataset"),
+        dbc.DropdownMenuItem("Dataset", href="/dataset"),
     ],
     nav = True,
     in_navbar = True,
@@ -28,7 +28,7 @@ navbar = dbc.Navbar(
                 dbc.Row(
                     [
                         dbc.Col(html.Img(src="/static/election2020.png", height="30px")),
-                        dbc.Col(dbc.NavbarBrand("COVID-19 DASH", className="ml-2")),
+                        dbc.Col(dbc.NavbarBrand("ELECTION TWEETS DASH", className="ml-2")),
                     ],
                     align="center",
                     no_gutters=True,
