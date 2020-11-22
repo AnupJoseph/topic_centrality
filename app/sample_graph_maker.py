@@ -13,6 +13,7 @@ def make_graph_parts(n):
     config_dict = {
         'colours': ['firebrick','orange','violet' ]
     }
+    print(config_dict['colours'])
 
     nodes = []
 
@@ -45,7 +46,7 @@ def make_graph_parts(n):
     for row in tweets_df.index:
         tweets_dict[str(tweets_df['id'][row])] = index
         nodes.append([index, (str(tweets_df['id'][row]),
-                              tweets_df['original_text'][row]), 'tweet', 'rgb(0,0,0)'])
+                              tweets_df['original_text'][row]), 'tweet', config_dict['colours'][1]])
 
         edges.append((graph_dict[tweets_df['original_author'][row]], index))
         index += 1
@@ -56,7 +57,7 @@ def make_graph_parts(n):
     i = 0
     for row in retweets_df.index:
         nodes.append([index, (retweets_df['retweet_id'][row],
-                              retweets_df['original_author'][row]), 'retweet', 'rgb(255,255,255)'])
+                              retweets_df['original_author'][row]), 'retweet', config_dict['colours'][2]])
         source = None
         if str(retweets_df['original_tweet_id'][row]) in tweets_dict.keys():
             source = tweets_dict[str(retweets_df['original_tweet_id'][row])]
