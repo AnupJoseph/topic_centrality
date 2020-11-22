@@ -1,6 +1,11 @@
-import dash
 import dash_table
 import pandas as pd
+
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+from dash.dependencies import Input, Output
+import dash_bootstrap_components as dbc
 
 df = pd.read_csv('https://raw.githubusercontent.com/AnupJoseph/topic_centrality/master/data/sparkling_clean_data.csv')
 df = df.resample(200)
@@ -21,3 +26,5 @@ layout = dash_table.DataTable(
     ],
     tooltip_duration=None
 )
+
+# layout = html.

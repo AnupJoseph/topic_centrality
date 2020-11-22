@@ -1,6 +1,6 @@
 from app import app
 
-from apps import knowledge_graph,dataset,home
+from apps import knowledge_graph,dataset,home,lda_topic_dist
 
 import dash_core_components as dcc
 import dash_html_components as html
@@ -14,6 +14,7 @@ dropdown = dbc.DropdownMenu(
         dbc.DropdownMenuItem("Home", href="/"),
         dbc.DropdownMenuItem("Graph", href="/graph"),
         dbc.DropdownMenuItem("Dataset", href="/dataset"),
+        dbc.DropdownMenuItem("LDA",href='/lda_results')
     ],
     nav = True,
     in_navbar = True,
@@ -56,7 +57,7 @@ def toggle_navbar_collapse(n, is_open):
         return not is_open
     return is_open
 
-for i in [2]:
+for i in [3]:
     app.callback(
         Output(f"navbar-collapse{i}", "is_open"),
         [Input(f"navbar-toggler{i}", "n_clicks")],
@@ -78,6 +79,8 @@ def display_page(pathname):
         return knowledge_graph.layout
     elif pathname == '/dataset':
         return dataset.layout
+    elif pathname == '/lda_results':
+        return lda_topic_dist.layout
     else:
         return home.layout
 
