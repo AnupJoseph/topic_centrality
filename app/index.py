@@ -1,6 +1,11 @@
 from app import app
 
-from apps import knowledge_graph,dataset
+from apps import knowledge_graph,dataset,home
+
+import dash_core_components as dcc
+import dash_html_components as html
+from dash.dependencies import Input, Output, State
+import dash_bootstrap_components as dbc
 
 # building the navigation bar
 # https://github.com/facultyai/dash-bootstrap-components/blob/master/examples/advanced-component-usage/Navbars.py

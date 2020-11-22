@@ -28,7 +28,7 @@ layout = html.Div([
         dbc.Row([
             dbc.Col(dbc.Card(children=[html.H3(children='Get the original datasets used in this dashboard',
                                                className="text-center"),
-                                       dbc.Row([dbc.Col(dbc.Button("Tweets", href="https://github.com/AnupJoseph/topic_centrality/blob/master/data/sparkling_clean_data.csv,
+                                       dbc.Row([dbc.Col(dbc.Button("Tweets", href="https://github.com/AnupJoseph/topic_centrality/blob/master/data/sparkling_clean_data.csv",
                                                                    color="primary"),
                                                         className="mt-3"),
                                                 dbc.Col(dbc.Button("Singapore", href="https://github.com/AnupJoseph/topic_centrality/blob/master/data/combined_dataframe.csv",

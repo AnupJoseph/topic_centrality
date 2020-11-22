@@ -21,7 +21,7 @@ def make_graph(nodes, edges):
 
 
 nodes,edges = make_graph_parts(10)
-G, layout = make_graph(nodes, edges)
+G, glayout = make_graph(nodes, edges)
 
 labels = []
 group = []
@@ -40,9 +40,9 @@ Yn = []
 Zn = []
 
 for k in range(len(nodes)):
-    Xn += [layout[k][0]]
-    Yn += [layout[k][1]]
-    Zn += [layout[k][2]]
+    Xn += [glayout[k][0]]
+    Yn += [glayout[k][1]]
+    Zn += [glayout[k][2]]
 
 Xe = []
 Ye = []
@@ -54,9 +54,9 @@ for e in edges:
         pass
     else:
         # x-coordinates of edge ends
-        Xe += [layout[e[0]][0], layout[e[1]][0], None]
-        Ye += [layout[e[0]][1], layout[e[1]][1], None]
-        Ze += [layout[e[0]][2], layout[e[1]][2], None]
+        Xe += [glayout[e[0]][0], glayout[e[1]][0], None]
+        Ye += [glayout[e[0]][1], glayout[e[1]][1], None]
+        Ze += [glayout[e[0]][2], glayout[e[1]][2], None]
 
 trace1 = go.Scatter3d(x=Xe, y=Ye, z=Ze, mode='lines', line=dict(
     color='rgb(125,125,125)', width=1), hoverinfo='none')
@@ -68,7 +68,7 @@ trace2 = go.Scatter3d(x=Xn, y=Yn, z=Zn, mode='markers', name='tweets',
 axis = dict(showbackground=False, showline=False, zeroline=False,
             showgrid=False, showticklabels=False, title='')
 
-layout = go.Layout(
+fig_layout = go.Layout(
     title="Network of tweets for American election",
     width=1000,
     height=1000,
@@ -81,4 +81,8 @@ layout = go.Layout(
 
 data = [trace1, trace2]
 
-fig = go.Figure(data=data, layout=layout)
+fig = go.Figure(data=data, layout=fig_layout)
+
+layout = html.Div([
+    dcc.Graph(figure=fig)
+])
