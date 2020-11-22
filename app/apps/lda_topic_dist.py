@@ -38,7 +38,7 @@ def tweet_topic_fig(leader_dataframe,n):
     return fig
 
 percentages = calculate_percentage()
-leader_dataframe = calculate_tweets()
+leader_dataframe = calculate_tweets(7)
 layout = html.Div([
     dbc.Container([
         dbc.Row([
