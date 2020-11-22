@@ -19,7 +19,10 @@ from .calculate_tweets import calculate_tweets
 def tweet_topic_fig(leader_dataframe,n):
     colors = {
         0:'#003f5c',
-
+        1:'#58508d',
+        2:'#bc5090',
+        3:'#ff6361',
+        4:'#ffa600'
     }
     fig = go.Figure()
     labels = [f'Topic {i}' for i in range(n)]
@@ -56,6 +59,6 @@ layout = html.Div([
     ])
     ]),
     dbc.Row([
-        dcc.Graph(figure=tweet_topic_fig(percentages,7))
+        dcc.Graph(figure=tweet_topic_fig(leader_dataframe,7))
     ]),
 ])
