@@ -1,4 +1,4 @@
-from sample_graph_maker import make_graph_parts
+from .sample_graph_maker import make_graph_parts
 import igraph as ig
 
 # Import libraries

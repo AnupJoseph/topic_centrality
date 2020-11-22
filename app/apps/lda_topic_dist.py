@@ -7,6 +7,8 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 
+
+from .calculate_percentage import calculate_percentage
 def topic_fig(series,n):
     labels = [f'Topic {i}' for i in range(n)]
     fig = go.Figure(data=[go.Pie(labels=labels, values=percentages, hole=0.6)])

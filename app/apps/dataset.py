@@ -8,7 +8,7 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 
 df = pd.read_csv('https://raw.githubusercontent.com/AnupJoseph/topic_centrality/master/data/sparkling_clean_data.csv')
-df = df.resample(200)
+df = df.sample()
 layout = dash_table.DataTable(
     style_cell={
         'overflow': 'hidden',
