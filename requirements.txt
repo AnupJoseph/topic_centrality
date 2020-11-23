@@ -24,13 +24,13 @@ dash-table==4.11.0
 decorator==4.4.2
 defusedxml==0.6.0
 dill==0.3.3
-emoji==0.6.0
+# emoji==0.6.0
 en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.3.1/en_core_web_sm-2.3.1.tar.gz
 entrypoints==0.3
 Flask==1.1.2
 Flask-Compress==1.8.0
 future==0.18.2
-GetOldTweets3==0.0.11
+# GetOldTweets3==0.0.11
 google-api-core==1.22.1
 google-api-python-client==1.10.0
 google-auth==1.20.1
@@ -124,4 +124,4 @@ wcwidth==0.2.5
 webencodings==0.5.1
 Werkzeug==1.0.1
 widgetsnbextension==3.5.1
-zipp==3.1.0
+# zipp==3.1.0
