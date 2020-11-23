@@ -28,14 +28,14 @@ def make_graph_parts(n):
     retweets_df = pd.DataFrame(columns=RETWEET_COLS)
     for politician in politicians:
         twitter_df = pd.read_csv(
-            f"../data/{politician}/{politician}_data.csv")
+            f"data/{politician}/{politician}_data.csv")
         if n:
             twitter_df = twitter_df.sample(
                 n=min(n, len(twitter_df)), random_state=1)
         tweets_df = pd.concat([tweets_df, twitter_df])
 
         retweet_data = pd.read_csv(
-            f"../data/{politician}/{politician}_retweets.csv")
+            f"data/{politician}/{politician}_retweets.csv")
         # if we're only taking 20 tweets find all the retweets for those 20
         retweet_data = retweet_data[retweet_data['original_tweet_id'].isin(
             twitter_df['id'])]

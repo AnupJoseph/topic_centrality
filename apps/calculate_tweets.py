@@ -16,7 +16,7 @@ def calculate_tweets(n):
 
     # for i in range(n):
     for politician in politicians:
-        df = pd.read_csv(f"../data/{politician}/{politician}_data_temp.csv")
+        df = pd.read_csv(f"data/{politician}/{politician}_data_temp.csv")
         data = Counter(df['lda_cluster'])
         data = [(key,value) for key,value in data.items()]
         data = sorted(data,key=operator.itemgetter(0))
