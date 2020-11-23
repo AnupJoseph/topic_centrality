@@ -31,7 +31,7 @@ layout = html.Div([
                                        dbc.Row([dbc.Col(dbc.Button("Tweets", href="https://github.com/AnupJoseph/topic_centrality/blob/master/data/sparkling_clean_data.csv",
                                                                    color="primary"),
                                                         className="mt-3"),
-                                                dbc.Col(dbc.Button("Singapore", href="https://github.com/AnupJoseph/topic_centrality/blob/master/data/combined_dataframe.csv",
+                                                dbc.Col(dbc.Button("Retweets", href="https://github.com/AnupJoseph/topic_centrality/blob/master/data/combined_dataframe.csv",
                                                                    color="primary"),
                                                         className="mt-3")], justify="center")
                                        ],

@@ -17,7 +17,7 @@ def make_graph_parts(n):
     config_dict = {
         'colours': ['firebrick','orange','violet' ]
     }
-    print(config_dict['colours'])
+    # print(config_dict['colours'])
 
     nodes = []
 
