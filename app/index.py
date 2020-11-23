@@ -1,5 +1,5 @@
 from app import app
-
+from app import server
 from apps import knowledge_graph,dataset,home,lda_topic_dist
 
 import dash_core_components as dcc
